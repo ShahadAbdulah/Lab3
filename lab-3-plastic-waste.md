@@ -1,11 +1,13 @@
 Lab 3 - Plastic Waste
 ================
 DSC 200 - Data Science I
-2021-02-06
+2021-02-15
 
-Student Name:
+Student Name: Shahad Abdulah
 
-Student ID:
+DS5
+
+Student ID:2201001400
 
 ``` r
 library(tidyverse)
@@ -65,6 +67,17 @@ E1. Plot, using histograms, the distribution of plastic waste per capita
 faceted by continent. What can you say about how the continents compare
 to each other in terms of their plastic waste per capita?
 
+``` r
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     color = continent, 
+                     fill = continent)) +
+  geom_histogram(alpha = 0.7)
+```
+
+Answer:the africa is most density continent and the south america is the
+most continent in plastic waste per cap
+
 **NOTE:** From this point onwards the plots and the output of the code
 are not displayed in the lab instructions, but you can and should write
 the code and view the results yourself.
@@ -102,7 +115,7 @@ ggplot(data = plastic_waste,
        mapping = aes(x = plastic_waste_per_cap, 
                      color = continent, 
                      fill = continent)) +
-  geom_density(alpha = 0.7)
+  geom_density(alpha = 0.1)
 ```
 
 This still doesn’t look great…
@@ -115,7 +128,10 @@ E3. Describe why we defined the `color` and `fill` of the curves by
 mapping aesthetics of the plot but we defined the `alpha` level as a
 characteristic of the plotting geom.
 
-Answer here:
+Answer here:because here we represent a set of data (continents),not
+just color control,as the colers here belong to the continents,and also
+the filling is related to the continents but the Alpha it’s talking
+about all Graphic (gemo\_density)
 
 *Now is a good time to knit your document and commit and push your
 changes to GitHub with an appropriate commit message. Make sure to
@@ -137,21 +153,69 @@ E4. Convert your side-by-side box plots from the previous task to
 What do the violin plots reveal that box plots do not? What features are
 apparent in the box plots but not in the violin plots?
 
+``` r
+ggplot(data = plastic_waste, 
+       mapping = aes(x = continent, 
+                     y = plastic_waste_per_cap)) +
+  geom_violin()
+```
+
+Answer:I see that the boxpolt is clearer and more precise than the
+violin plots, and also in the boxpolt the points are much clearer and
+come more regularly.
+
 **Remember:** We use `geom_point()` to make scatterplots.
 
 E5. Visualize the relationship between plastic waste per capita and
 mismanaged plastic waste per capita using a scatterplot. Describe the
 relationship.
 
+``` r
+ggplot(data = plastic_waste, 
+       mapping = aes(x = mismanaged_plastic_waste_per_cap, 
+                     y = plastic_waste_per_cap)) +
+  geom_point()
+```
+
+Answer5:The graph shows the relationship between plastic waste per
+capita and mismanaged plastic waste per capita using a scatter plot. The
+ratio mismanaged plastic and plastic waste relationship is almost the
+same,amd relationsip is positve
+
 E6. Colour the points in the scatterplot by continent. Does there seem
 to be any clear distinctions between continents with respect to how
 plastic waste per capita and mismanaged plastic waste per capita are
 associated?
 
+``` r
+ggplot(data = plastic_waste, 
+       mapping = aes(x = mismanaged_plastic_waste_per_cap,color = continent, fill = continent,
+                     y = plastic_waste_per_cap)) +
+  geom_point()
+```
+
+Answer6:Countries became more pronounced with the addition and division
+of colors,example Europe(positive) relationship , Africa is the most
+(mismanaged\_plastic\_waste per cap)
+
 E7. Visualize the relationship between plastic waste per capita and
 total population as well as plastic waste per capita and coastal
 population. You will need to make two separate plots. Do either of these
 pairs of variables appear to be more strongly linearly associated?
+
+``` r
+ggplot(data = plastic_waste, 
+       mapping = aes(x = total_pop,color = continent, fill = continent,
+                     y = plastic_waste_per_cap)) +
+  geom_point()
+```
+
+``` r
+ggplot(data = plastic_waste, 
+       mapping = aes(x = coastal_pop,color = continent, fill = continent,
+                     y = plastic_waste_per_cap)) +
+  geom_point()
+```
 
 *Now is another good time to knit your document and commit and push your
 changes to GitHub with an appropriate commit message. Make sure to
@@ -172,7 +236,10 @@ use](https://ggplot2.tidyverse.org/reference/index.html#section-geoms).
 E8. Recreate the following plot, and interpret what you see in context
 of the data.
 
-![](lab-3-plastic-waste_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](lab-3-plastic-waste_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+The graph shows the distribution of plastic waste per capita and costal
+population proportion for each continent. The linear association is
+almost similar but there is more outlier in costal population.
 
 Knit, *commit (with an appropriate message), and push your changes to
 GitHub with an appropriate commit message. Make sure to commit and push
